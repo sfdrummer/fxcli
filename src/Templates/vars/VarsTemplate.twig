@@ -1,0 +1,11 @@
+// _{{ filename }}.scss
+
+{% for key, data in config %}
+${{ key }}: {{ data }};
+{% endfor %}
+
+${{ filename }}: (
+{% for key, data in config %}
+    '{{ key }}': ${{ key }},
+{% endfor %}
+);

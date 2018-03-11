@@ -1,0 +1,17 @@
+// _{{ filename }}.scss
+
+{% for key, data in config %}
+$ft--{{ key }}: {{ data.stack }}
+{% for label, weight in data.weights %}
+$ft--{{ key }}--{{ label }}: {{ weight }};
+{% endfor %}
+{% endfor %}
+
+${{ filename }}: (
+{% for key, data in config %}
+    'ft--{{ key }}': $ft--{{ key }},
+{% for label, weight in data.weights %}
+    'ft--{{ key }}--{{ label }}': $ft--{{ key }}--{{ label }},
+{% endfor %}
+{% endfor %}
+);

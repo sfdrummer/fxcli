@@ -1,0 +1,22 @@
+{
+    "name": "sfdrummer/fx",
+    "description": "FX styling stack generator",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Russ Clewett",
+            "email": "rclewett@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^4.0",
+        "symfony/filesystem": "^4.0",
+        "twig/twig": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fx\\": "src/"
+        }
+    }
+}

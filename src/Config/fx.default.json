@@ -1,0 +1,136 @@
+{
+    "info": {
+        "project": "fx-project",
+        "version": "1.0.0",
+        "description": "A project built on the FX workspace.",
+        "author": "Author name email@example.com",
+        "licence": "MIT"
+    },
+  "libraries": {
+    "normalize.css": {
+      "manager": "npm",
+      "packageName": "normalize.css"
+  },
+  "bourbon": {
+      "manager": "npm",
+      "packageName": "bourbon"
+  },
+  "sass-burger": {
+      "manager": "npm",
+      "packageName": "sass-burger"
+  }
+},
+"vars": {
+    "colours": {
+      "black": "#000",
+      "white": "#fff",
+      "fx--red": "#ff0000",
+      "fx--yellow": "#fcf500",
+      "fx--green": "#8dc63f"
+  },
+  "sizes": {
+      "sm": ".75rem",
+      "rg": "1rem",
+      "md": "1.333rem",
+      "db": "1.777rem",
+      "lg": "2.369rem",
+      "xl": "3.157rem",
+      "xxl": "4.209rem"
+  },
+  "medias": {
+    "small-only": {
+        "short": "so",
+        "value": "0 575px"
+    },
+    "mobile-only": {
+        "short": "mo",
+        "value": "0 767px"
+    },
+    "small": "576px",
+    "medium": "768px",
+    "large": "992px",
+    "xlarge": "1200px"
+},
+"fonts": {
+  "helvetica": {
+    "stack": "Helvetica, Arial, sans-serif",
+    "weights": {
+      "light": 200,
+      "regular": 300,
+      "bold": 600
+  }
+}
+},
+"zIndex": {
+  "z--header": 10,
+  "z--navigation": 20,
+  "z--detail": 30,
+  "z--overlay": 40,
+  "z--urgent": 100
+}
+},
+"partials": {
+    "base": {
+      "type": "command",
+      "command": "bitters install"
+  },
+  "blocks": {
+      "type": "collection",
+      "prefix": "block--",
+      "includeMedias": true,
+      "partials": [
+        "about-block",
+        "footer-menu",
+        "homepage-search"
+    ]
+  },
+  "components": {
+      "type": "tree",
+      "children": {
+        "structural": {
+            "type": "collection",
+            "prefix": "",
+          "partials": [
+            "header",
+            "footer",
+            "pre-header",
+            "navigation",
+            "sub-menu"
+        ]
+      },
+      "gadget": {
+            "type": "collection",
+            "prefix": "",
+          "partials": [
+            "accordion",
+            "burger",
+            "pager",
+            "notice",
+            "blockquote",
+            "tab-set"
+        ]
+      },
+      "listing": [],
+      "special": [],
+      "fields": [],
+      "view-modes": []
+  }
+},
+"paths": {
+  "type": "collection",
+  "prefix": "path--",
+  "partials": [
+    "homepage"
+  ]
+},
+"regions": {
+  "type": "collection",
+  "prefix": "region--",
+  "partials": [
+    "content",
+    "header",
+    "pre-nav"
+  ]
+}
+}
+}

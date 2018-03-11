@@ -1,0 +1,19 @@
+// _{{ filename }}.scss
+
+{% for key, data in config %}
+{% if data.short is defined %}
+${{ data.short }}: {{ data.value }};
+{% else %}
+${{ key }}: {{ data }};
+{% endif %}
+{% endfor %}
+
+${{ filename }}: (
+{% for key, data in config %}
+{% if data.short is defined %}
+    '{{ data.short }}': ${{ data.short }}
+{% else %}
+    '{{ key }}': ${{ key }}
+{% endif %}
+{% endfor %}
+);
