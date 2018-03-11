@@ -15,10 +15,13 @@ class Handler
     protected $section;
     protected $directory;
     protected $twig;
+    protected $output;
+    protected $defaultTemplate;
 
-    function __construct($config)
+    function __construct($config, $output)
     {
         $this->config = $config;
+        $this->output = $output;
         $this->fs = new Filesystem;
         if ($this->fs->exists(__DIR__ . '/../Templates/' . $this->section)) {
             $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../Templates/' . $this->section . '/');
@@ -41,14 +44,18 @@ class Handler
         return $table;
     }
 
-    public function build($output)
+    public function build()
     {
-        $output->writeln("<info>{$this->section}: Printing configuration...");
-        $this->print($output);
+        $this->print();
     }
 
     protected function configItems()
     {
         return $this->config[$this->section];
+    }
+
+    protected function getTemplate($key)
+    {
+        return array_key_exists($key, $this->templates) ? $this->templates[$key] : $this->defaultTemplate;
     }
 }

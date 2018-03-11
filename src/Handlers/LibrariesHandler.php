@@ -13,17 +13,18 @@ class LibrariesHandler extends Handler
 {
     protected $section = 'libraries';
 
-    public function build($output)
+    public function build()
     {
         $fs = new Filesystem;
         if (!$fs->exists('package.json')) {
             $fs->dumpFile('package.json', $this->npmDefaults($this->config));
+            $this->output->writeln('<info>Created package.json file</info>');
             foreach ($this->config[$this->section] as $key => $data) {
                 exec($data['manager'] . ' install --save ' . $data['packageName']);
             }
-            $output->writeln('<info>Libraries initialised</info>');
+            $this->output->writeln('<info>Libraries initialised</info>');
         } else {
-            $output->writeln('<info>Libraries already initialised</info>');
+            $this->output->writeln('<info>Libraries already initialised</info>');
         }
     }
 

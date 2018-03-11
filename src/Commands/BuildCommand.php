@@ -32,26 +32,31 @@ class BuildCommand extends Command {
     {
         if (!$this->fs->exists('assets')) {
             $output->writeln('<info>FX structure not detected, creating...</info>');
+            $output->writeln('');
             $this->initStructure();
         } else {
             $output->writeln('<info>FX structure detected!</info>');
+            $output->writeln('');
         }
 
         if (isset($this->config)) {
             $output->writeln('<info>Building Libraries...</info>');
-            (new LibrariesHandler($this->config))->build($output);
+            $output->writeln('<info>=====================</info>');
+            (new LibrariesHandler($this->config, $output))->build();
             $output->writeln('');
         }
 
         if (isset($this->config['vars'])) {
             $output->writeln('<info>Building Vars...</info>');
-            (new VarsHandler($this->config))->build($output);
+            $output->writeln('<info>================</info>');
+            (new VarsHandler($this->config, $output))->build();
             $output->writeln('');
         }
 
         if (isset($this->config['partials'])) {
             $output->writeln('<info>Building Partials...</info>');
-            (new PartialsHandler($this->config))->build($output);
+            $output->writeln('<info>====================</info>');
+            (new PartialsHandler($this->config, $output))->build();
             $output->writeln('');
         }
     }
