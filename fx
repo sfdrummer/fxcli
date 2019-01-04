@@ -7,7 +7,7 @@ use Fx\Commands\InitCommand;
 use Fx\Commands\ListConfigCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Filesystem\Filesystem;
-require 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $app = new Application('FX Cli', '0.1');
 

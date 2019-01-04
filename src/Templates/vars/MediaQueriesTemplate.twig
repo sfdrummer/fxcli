@@ -11,9 +11,9 @@ ${{ key }}: {{ data }};
 ${{ filename }}: (
 {% for key, data in config %}
 {% if data.short is defined %}
-    '{{ data.short }}': ${{ data.short }}
+    '{{ data.short }}': ${{ data.short }},
 {% else %}
-    '{{ key }}': ${{ key }}
+    '{{ key }}': ${{ key }},
 {% endif %}
 {% endfor %}
 );

@@ -1,7 +1,7 @@
 // _{{ filename }}.scss
 
 {% for key, data in config %}
-$ft--{{ key }}: {{ data.stack }}
+$ft--{{ key }}: {{ data.stack }};
 {% for label, weight in data.weights %}
 $ft--{{ key }}--{{ label }}: {{ weight }};
 {% endfor %}

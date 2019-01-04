@@ -20,13 +20,13 @@ class VarsHandler extends Handler
 
     protected function print()
     {
-        if (!$this->fs->exists('assets/styles')) {
+        if (!$this->fs->exists($this->base . '/styles')) {
             $this->output->writeln('<error>Styles directory has not been created!</error>');
         }
         foreach ($this->configItems() as $key => $data) {
-            $this->output->writeln('<info>Rendering: assets/styles/vars/_' . $key . '.scss</info>');
+            $this->output->writeln('<info>Rendering: ' . $this->base . '/styles/vars/_' . $key . '.scss</info>');
             $template = $this->twig->load($this->getTemplate($key));
-            $this->fs->dumpfile('assets/styles/vars/_' . $key . '.scss',
+            $this->fs->dumpfile($this->base . '/styles/vars/_' . $key . '.scss',
                 $template->render(['filename' => $key, 'config' => $data]));
         }
     }

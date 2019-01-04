@@ -18,10 +18,11 @@ class Handler
     protected $output;
     protected $defaultTemplate;
 
-    function __construct($config, $output)
+    function __construct($config, $output, $base)
     {
         $this->config = $config;
         $this->output = $output;
+        $this->base = $base;
         $this->fs = new Filesystem;
         if ($this->fs->exists(__DIR__ . '/../Templates/' . $this->section)) {
             $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../Templates/' . $this->section . '/');

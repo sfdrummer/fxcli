@@ -19,7 +19,7 @@ class PartialsHandler extends Handler
 
     protected function print()
     {
-        if (!$this->fs->exists('assets/styles')) {
+        if (!$this->fs->exists($this->base . '/styles')) {
             $this->output->writeln('<error>Styles directory has not been created!</error>');
         }
 
@@ -30,7 +30,7 @@ class PartialsHandler extends Handler
 
     private function command($key, $data)
     {
-        chdir('assets/styles');
+        chdir($this->base . '/styles');
         exec($data['command']);
         chdir('../../');
     }
@@ -38,22 +38,25 @@ class PartialsHandler extends Handler
     private function collection($key, $data)
     {
         // Create the collection directory
-        $this->fs->mkdir('assets/styles/' . $key);
+        $this->fs->mkdir($this->base . '/styles/' . $key);
         $this->output->writeln('<info>Creating collecting for ' . $key);
 
         // create files
         foreach ($data['partials'] as $partial) {
-            $this->output->writeln('<info>Rendering: assets/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss</info>');
             $template = $this->twig->load($this->getTemplate($key));
-            $this->fs->dumpfile('assets/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss',
-                $template->render(['filename' => $partial, 'config' => $data]));
+            if (!$this->fs->exists($this->base . '/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss')) {
+                $this->output->writeln('<info>Rendering: ' . $this->base . '/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss</info>');
+                $this->fs->dumpfile($this->base . '/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss', $template->render(['filename' => $partial, 'config' => $data]));
+            } else {
+                $this->output->writeln('<info>Skipping: ' . $this->base . '/styles/' . $key . '/_' . $data['prefix'] . $partial . '.scss -> Already exists');
+            }
         }
         $this->output->writeln('');
     }
 
     private function tree($key, $data)
     {
-        $root = 'assets/styles/' . $key;
+        $root = $this->base . '/styles/' . $key;
         $this->output->writeln('<info>Creating tree root for ' . $key);
         $this->fs->mkdir($root);
 
