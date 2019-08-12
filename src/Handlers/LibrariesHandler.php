@@ -24,7 +24,11 @@ class LibrariesHandler extends Handler
             }
             $this->output->writeln('<info>Libraries initialised</info>');
         } else {
-            $this->output->writeln('<info>Libraries already initialised</info>');
+            $this->output->writeln('<info>Package manager already initialised</info>');
+            $this->output->writeln('<info>Adding packages to package.json</info>');
+            foreach ($this->config[$this->section] as $key => $data) {
+                exec($data['manager'] . ' install --save ' . $data['packageName']);
+            }
         }
     }
 

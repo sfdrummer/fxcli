@@ -31,17 +31,17 @@ class ListConfigCommand extends Command {
     {
         if (isset($this->config->libraries)) {
             $output->writeln('<info>Libraries</info>');
-            (new LibrariesHandler($this->config))->list($output)->render();
+            (new LibrariesHandler($this->config, $output, "/"))->list($output)->render();
             $output->writeln('');
         }
         if (isset($this->config->vars)) {
             $output->writeln('<info>Vars</info>');
-            (new VarsHandler($this->config))->list($output)->render();
+            (new VarsHandler($this->config, $output, "/"))->list($output)->render();
             $output->writeln('');
         }
         if (isset($this->config->partials)) {
             $output->writeln('<info>Partials</info>');
-            (new PartialsHandler($this->config))->list($output)->render();
+            (new PartialsHandler($this->config, $output, "/"))->list($output)->render();
             $output->writeln('');
         }
     }

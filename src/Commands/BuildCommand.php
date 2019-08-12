@@ -63,6 +63,7 @@ class BuildCommand extends Command {
 
     private function initStructure()
     {
+        print_r($this->config['info']);
         switch ($this->config['info']['projectType']) {
             case 'drupal':
                 $structure = $this->drupalStructure();
@@ -78,6 +79,10 @@ class BuildCommand extends Command {
 
             case 'jigsaw':
                 $structure = $this->jigsawStructure();
+                break;
+
+            case 'gatsby':
+                $structure = $this->gatsbyStructure();
                 break;
 
             default:
@@ -105,6 +110,10 @@ class BuildCommand extends Command {
 
             case 'jigsaw':
                 return 'source';
+                break;
+
+            case 'gatsby':
+                return 'src';
                 break;
         }
     }
@@ -168,6 +177,22 @@ class BuildCommand extends Command {
             $this->getBase() . '/_assets/styles',
             $this->getBase() . '/_assets/styles/vars',
             $this->getBase() . '/_assets/styles/utilities',
+            $this->getBase() . '/assets/images/os',
+            $this->getBase() . '/assets/images/compiled'
+        ];
+    }
+
+    private function gatsbyStructure()
+    {
+        return [
+            $this->getBase(),
+            $this->getBase() . '/assets/images',
+            $this->getBase() . '/assets/images/icons',
+            $this->getBase() . '/assets/images/misc',
+            $this->getBase() . '/assets/images/logos',
+            $this->getBase() . '/assets/styles',
+            $this->getBase() . '/assets/styles/vars',
+            $this->getBase() . '/assets/styles/utilities',
             $this->getBase() . '/assets/images/os',
             $this->getBase() . '/assets/images/compiled'
         ];
